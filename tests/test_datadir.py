@@ -7,7 +7,7 @@ def test_datadir_paths():
     request = MagicMock()
     basedir = Path("tests")
     datadir = basedir / "data"
-    request.path = basedir
+    request.path.parent = basedir
 
     # tests.test_module.TestClass.test_method
     request.module.__name__ = "test_module"
@@ -42,7 +42,7 @@ def test_resolve():
     basedir = Path("tests")
     datadir = basedir / "data"
     request = MagicMock()
-    request.path = basedir
+    request.path.parent = basedir
 
     # tests.test_module.TestClass.test_method
     request.module.__name__ = "test_module"

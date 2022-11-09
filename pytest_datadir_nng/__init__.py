@@ -40,7 +40,7 @@ PathArg = Union[str, Path]
 
 class _Datadir:
     def __init__(self, request: pytest.FixtureRequest):
-        basedir = request.path
+        basedir = request.path.parent
         datadir = basedir / "data"
 
         self._datadirs = []
