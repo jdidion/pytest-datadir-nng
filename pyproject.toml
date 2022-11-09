@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "pytest-datadir-nng"
+version = "1.0.2"
+description = "Fixtures for pytest allowing test functions/methods to easily retrieve test resources from the local filesystem."
+readme = "README.md"
+authors = ["jdidion <github@didion.net>"]
+homepage = "https://github.com/jdidion/pytest-datadir-nng"
+repository = "https://github.com/jdidion/pytest-datadir-nng"
+license = "BSD-3-Clause"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Testing"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pytest = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins.pytest11]
+pytest_datadir_nng = "pytest_datadir_nng"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = True
+envlist = py36,py37,py38,py39,310
+
+[gh-actions]
+python =
+    3.7: py37
+    3.8: py38
+    3.9: py39
+    3.10: py310
+
+[testenv]
+deps=
+    pytest
+commands=pytest
+"""
