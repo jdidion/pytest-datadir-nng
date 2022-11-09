@@ -1,6 +1,6 @@
 # datadir-nng plugin for pytest
 
-[![pypi-badge](https://img.shields.io/pypi/v/pytest-datadir-nng.svg?){.align-middle}](https://pypi.python.org/pypi/pytest-datadir-nng)"
+[![pypi-badge](https://img.shields.io/pypi/v/pytest-datadir-nng.svg?)](https://pypi.python.org/pypi/pytest-datadir-nng)"
 
 The `datadir-nng` plugin for [pytest](http://pytest.org/) provides the
 `datadir` and `datadir_copy` fixtures which allow test functions to
