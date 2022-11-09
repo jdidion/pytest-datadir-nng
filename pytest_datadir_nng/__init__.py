@@ -60,11 +60,10 @@ class _Datadir:
             datadir_path = datadir / path
             if datadir_path.exists():
                 return datadir_path
-
-        raise KeyError(
-            "File `%s' not found in any of the following datadirs: %s"
-            % (path, self._datadirs)
-        )
+        else:
+            raise KeyError(
+                f"File `{path}' not found in any of the following datadirs: {self._datadirs}"
+            )
 
     def __truediv__(self, path) -> Path:
         return self.__getitem__(path)
