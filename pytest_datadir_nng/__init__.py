@@ -66,6 +66,9 @@ class _Datadir:
             % (path, self._datadirs)
         )
 
+    def __truediv__(self, path) -> Path:
+        return self.__getitem__(path)
+
 
 class _DatadirCopy(_Datadir):
     def __init__(self, request: pytest.FixtureRequest, tmpdir: Path):
