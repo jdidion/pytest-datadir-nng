@@ -61,3 +61,9 @@ target/
 
 # PyCharm
 .idea/
+
+# uv
+.venv/
+
+# oh-my-claudecode scratch
+.omc/

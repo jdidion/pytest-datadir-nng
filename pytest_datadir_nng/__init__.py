@@ -29,13 +29,12 @@
 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from pathlib import Path
-import pytest
 import shutil
-from typing import Union
+from pathlib import Path
 
+import pytest
 
-PathArg = Union[str, Path]
+PathArg = str | Path
 
 
 class _Datadir:
@@ -70,9 +69,9 @@ class _Datadir:
 
 
 class _DatadirCopy(_Datadir):
-    def __init__(self, request: pytest.FixtureRequest, tmpdir: Path):
+    def __init__(self, request: pytest.FixtureRequest, tmp_path: Path):
         super().__init__(request)
-        self._tmpdir = tmpdir
+        self._tmpdir = tmp_path
 
     def __getitem__(self, path: PathArg) -> Path:
         datadir_path = super().__getitem__(path)
@@ -177,7 +176,7 @@ def datadir(request):
 
 
 @pytest.fixture(scope="function")
-def datadir_copy(request, tmpdir):
+def datadir_copy(request, tmp_path):
     """
     Similar to the :func:`.datadir` fixture, but copies the requested resources to a temporary
     directory first so that test functions or methods can modify their resources on-disk without
@@ -209,4 +208,4 @@ def datadir_copy(request, tmpdir):
             #              of the resource.
             fh = resource1.open("rb")
     """
-    return _DatadirCopy(request, tmpdir)
+    return _DatadirCopy(request, tmp_path)
