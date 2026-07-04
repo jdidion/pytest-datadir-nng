@@ -1,6 +1,7 @@
 from pathlib import Path
-from pytest_datadir_nng import _Datadir
 from unittest.mock import MagicMock
+
+from pytest_datadir_nng import _Datadir
 
 
 def test_datadir_paths():

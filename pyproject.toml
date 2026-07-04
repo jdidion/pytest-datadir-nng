@@ -1,54 +1,62 @@
-[tool.poetry]
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
 name = "pytest-datadir-nng"
-version = "1.1.1"
 description = "Fixtures for pytest allowing test functions/methods to easily retrieve test resources from the local filesystem."
 readme = "README.md"
-authors = ["jdidion <github@didion.net>"]
-homepage = "https://github.com/jdidion/pytest-datadir-nng"
-repository = "https://github.com/jdidion/pytest-datadir-nng"
+authors = [{ name = "jdidion", email = "github@didion.net" }]
 license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = ["pytest>=7.0.0"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
+    "Framework :: Pytest",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: BSD License",
     "Operating System :: MacOS :: MacOS X",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
-    "Topic :: Software Development :: Testing"
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.6"
-pytest = "^7.0.0"
+[project.urls]
+Homepage = "https://github.com/jdidion/pytest-datadir-nng"
+Repository = "https://github.com/jdidion/pytest-datadir-nng"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.plugins.pytest11]
+[project.entry-points.pytest11]
 pytest_datadir_nng = "pytest_datadir_nng"
 
-[tool.tox]
-legacy_tox_ini = """
-[tox]
-isolated_build = True
-envlist = py36,py37,py38,py39,310
+[dependency-groups]
+dev = ["pytest>=7.0.0", "pytest-cov>=5.0.0", "ruff>=0.6.0"]
 
-[gh-actions]
-python =
-    3.7: py37
-    3.8: py38
-    3.9: py39
-    3.10: py310
+[tool.setuptools]
+packages = ["pytest_datadir_nng"]
 
-[testenv]
-deps=
-    pytest
-commands=pytest
-"""
+[tool.setuptools_scm]
+fallback_version = "1.1.1"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+source = ["pytest_datadir_nng"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
